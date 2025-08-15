@@ -10,4 +10,9 @@ export class AppointmentListComponent {
     appointments: Appointment[] = [];
     newAppointmentTitle: string = '';
     newAppointmentDate: Date = new Date();
+    today: string = new Date().toISOString().split('T')[0];
+
+    public addAppointment() {
+        alert(this.newAppointmentTitle + ' ' + this.newAppointmentDate);
+    }
 }
