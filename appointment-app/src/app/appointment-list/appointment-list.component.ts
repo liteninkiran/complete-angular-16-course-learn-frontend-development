@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Appointment } from '../models/appointment';
+import { Appointment, DummyAppointment } from '../models/appointment';
 
 @Component({
     selector: 'app-appointment-list',
@@ -7,12 +7,22 @@ import { Appointment } from '../models/appointment';
     styleUrls: ['./appointment-list.component.css'],
 })
 export class AppointmentListComponent {
+    today: string = DummyAppointment.date;
     appointments: Appointment[] = [];
     newAppointmentTitle: string = '';
-    newAppointmentDate: Date = new Date();
-    today: string = new Date().toISOString().split('T')[0];
+    newAppointmentDate: string = this.today;
 
     public addAppointment() {
-        alert(this.newAppointmentTitle + ' ' + this.newAppointmentDate);
+        if (this.newAppointmentTitle.trim().length && this.newAppointmentDate) {
+            const appt: Appointment = {
+                id: Date.now(),
+                title: this.newAppointmentTitle,
+                date: this.newAppointmentDate,
+            };
+
+            this.appointments.push(appt);
+            this.newAppointmentTitle = '';
+            this.newAppointmentDate = this.today;
+        }
     }
 }
