@@ -9,7 +9,12 @@ const key = 'reservations';
 export class ReservationService {
     private reservations: Reservation[] = [];
 
-    constructor() {}
+    constructor() {
+        const savedReservations = localStorage.getItem(key);
+        this.reservations = savedReservations
+            ? JSON.parse(savedReservations)
+            : [];
+    }
 
     public getReservations(): Reservation[] {
         return this.reservations;
