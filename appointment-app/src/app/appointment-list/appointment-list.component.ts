@@ -23,10 +23,18 @@ export class AppointmentListComponent {
             this.appointments.push(appt);
             this.newAppointmentTitle = '';
             this.newAppointmentDate = new Date();
+            this.storeAppointments();
         }
     }
 
     public deleteAppointment(index: number) {
         this.appointments.splice(index, 1);
+        this.storeAppointments();
+    }
+
+    private storeAppointments() {
+        const data = JSON.stringify(this.appointments);
+        const key = 'appointments';
+        localStorage.setItem(key, data);
     }
 }
