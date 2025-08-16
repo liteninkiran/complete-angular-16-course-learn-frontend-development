@@ -1,21 +1,51 @@
-<div>
-    <input
-        placeholder="Appointment description"
-        [(ngModel)]="newAppointmentTitle"
-    />
-    <input
-        placeholder="Appointment date"
-        [(ngModel)]="newAppointmentDate"
-        type="date"
-        [min]="today"
-    />
-    <button (click)="addAppointment()">Add</button>
-</div>
+<div class="container">
+    <div class="card mt-3 px-3 pt-3">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">Create New Appointment</h2>
+            </div>
+        </div>
 
-<ul>
-    <li *ngFor="let appointment of appointments; index as i">
-        {{ appointment.id }} {{ appointment.title }}
-        {{ appointment.date | date : 'dd/MM/yyyy' }}
-        <button (click)="deleteAppointment(i)">Delete</button>
-    </li>
-</ul>
+        <div class="row mt-3">
+            <div class="col-md-6 mb-3">
+                <input
+                    class="form-control"
+                    placeholder="Appointment description"
+                    [(ngModel)]="newAppointmentTitle"
+                />
+            </div>
+            <div class="col-md-4 mb-3">
+                <input
+                    class="form-control"
+                    placeholder="Appointment date"
+                    [(ngModel)]="newAppointmentDate"
+                    type="date"
+                    [min]="today"
+                />
+            </div>
+            <div class="col-md-2 mb-3">
+                <button
+                    class="btn btn-primary w-100"
+                    (click)="addAppointment()"
+                >
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mt-5">Appointments</h2>
+
+    <ul class="list-group mt-3">
+        <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let appointment of appointments; index as i"
+        >
+            {{ appointment.title }}
+            {{ appointment.date | date : 'dd/MM/yyyy' }}
+            <button class="btn btn-danger" (click)="deleteAppointment(i)">
+                Delete
+            </button>
+        </li>
+    </ul>
+</div>
