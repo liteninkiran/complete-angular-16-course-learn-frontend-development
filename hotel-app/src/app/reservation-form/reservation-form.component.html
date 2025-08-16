@@ -1,2 +1,29 @@
 <h3>Create New Reservation</h3>
-<form [formGroup]="reservationForm"></form>
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="checkInDate">Check-In Date</label>
+        <input type="date" formControlName="checkInDate" />
+    </div>
+
+    <div>
+        <label for="checkOutDate">Check-Out Date</label>
+        <input type="date" formControlName="checkOutDate" />
+    </div>
+
+    <div>
+        <label for="guestName">Guest Name</label>
+        <input type="text" formControlName="guestName" />
+    </div>
+
+    <div>
+        <label for="guestEmail">Guest Email</label>
+        <input type="email" formControlName="guestEmail" />
+    </div>
+
+    <div>
+        <label for="roomNumber">Room Number</label>
+        <input type="number" formControlName="roomNumber" />
+    </div>
+
+    <button type="submit" [disabled]="reservationForm.invalid">Submit</button>
+</form>
