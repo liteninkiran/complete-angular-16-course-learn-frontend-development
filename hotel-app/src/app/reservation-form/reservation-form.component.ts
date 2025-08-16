@@ -18,7 +18,8 @@ const formGroup = {
     styleUrls: ['./reservation-form.component.css'],
 })
 export class ReservationFormComponent implements OnInit {
-    reservationForm: FormGroup = new FormGroup({});
+    public reservationForm: FormGroup = new FormGroup({});
+    public id: string | null = null;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -29,10 +30,10 @@ export class ReservationFormComponent implements OnInit {
 
     public ngOnInit(): void {
         this.reservationForm = this.formBuilder.group(formGroup);
-        const id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
-        if (id) {
-            const reservation = this.reservationService.getReservation(id);
+        if (this.id) {
+            const reservation = this.reservationService.getReservation(this.id);
             if (reservation) {
                 this.reservationForm.patchValue(reservation);
             }
@@ -42,10 +43,9 @@ export class ReservationFormComponent implements OnInit {
     public onSubmit(): void {
         if (this.reservationForm.valid) {
             const reservation: Reservation = this.reservationForm.value;
-            const id = this.activatedRoute.snapshot.paramMap.get('id');
 
-            if (id) {
-                this.reservationService.updateReservation(id, reservation);
+            if (this.id) {
+                this.reservationService.updateReservation(this.id, reservation);
             } else {
                 this.reservationService.addReservation(reservation);
             }
