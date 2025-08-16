@@ -7,10 +7,10 @@ import { Appointment, DummyAppointment } from '../models/appointment';
     styleUrls: ['./appointment-list.component.css'],
 })
 export class AppointmentListComponent {
-    today: string = DummyAppointment.date;
+    today: string = new Date().toISOString().split('T')[0];
     appointments: Appointment[] = [];
     newAppointmentTitle: string = '';
-    newAppointmentDate: string = this.today;
+    newAppointmentDate: Date = new Date();
 
     public addAppointment() {
         if (this.newAppointmentTitle.trim().length && this.newAppointmentDate) {
@@ -22,7 +22,7 @@ export class AppointmentListComponent {
 
             this.appointments.push(appt);
             this.newAppointmentTitle = '';
-            this.newAppointmentDate = this.today;
+            this.newAppointmentDate = new Date();
         }
     }
 }
