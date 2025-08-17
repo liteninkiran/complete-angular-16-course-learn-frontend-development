@@ -1,0 +1,42 @@
+export const mockData = [
+    {
+        id: '1',
+        guestName: 'Dave',
+        guestEmail: 'dave@example.net',
+        roomNumber: 100,
+        checkInDate: '2025-08-01',
+        checkOutDate: '2025-08-08',
+    },
+    {
+        id: '2',
+        guestName: 'Tim',
+        guestEmail: 'tim@example.net',
+        roomNumber: 57,
+        checkInDate: '2025-07-20',
+        checkOutDate: '2025-07-23',
+    },
+    {
+        id: '3',
+        guestName: 'John',
+        guestEmail: 'john@example.net',
+        roomNumber: 82,
+        checkInDate: '2025-07-15',
+        checkOutDate: '2025-07-20',
+    },
+    {
+        id: '4',
+        guestName: 'Tim',
+        guestEmail: 'tim@example.net',
+        roomNumber: 16,
+        checkInDate: '2025-07-12',
+        checkOutDate: '2025-07-21',
+    },
+    {
+        id: '5',
+        guestName: 'Phil',
+        guestEmail: 'phil@example.net',
+        roomNumber: 24,
+        checkInDate: '2025-07-05',
+        checkOutDate: '2025-07-09',
+    },
+];
