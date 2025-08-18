@@ -5,7 +5,20 @@
         <mat-list>
             <mat-list-item *ngFor="let item of cartItems">
                 <span matListItemTitle>{{ item.name }}</span>
-                <span matListItemLine>{{ item.price | currency : 'GBP' }}</span>
+                <span matListItemLine>{{
+                    item.price | currency : currency
+                }}</span>
+            </mat-list-item>
+
+            <mat-divider />
+
+            <mat-list-item>
+                <span class="price" matListItemTitle
+                    >Total ({{ currency }})</span
+                >
+                <span class="price" matListItemLine>{{
+                    totalPrice | currency : currency
+                }}</span>
             </mat-list-item>
         </mat-list>
     </mat-card>
