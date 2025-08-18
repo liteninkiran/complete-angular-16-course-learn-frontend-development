@@ -20,6 +20,15 @@
                     totalPrice | currency : currency
                 }}</span>
             </mat-list-item>
+
+            <mat-divider />
+
+            <mat-list-item class="text-right">
+                <button mat-flat-button (click)="clearCart()">Clear</button>
+                <button mat-raised-button color="accent" (click)="checkout()">
+                    Checkout
+                </button>
+            </mat-list-item>
         </mat-list>
     </mat-card>
 </div>

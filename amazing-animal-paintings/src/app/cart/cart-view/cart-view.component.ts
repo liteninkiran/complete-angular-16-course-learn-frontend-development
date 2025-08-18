@@ -24,4 +24,10 @@ export class CartViewComponent implements OnInit {
     public getTotalPrice(): number {
         return this.cartItems.reduce((sum, item) => sum + item.price, 0);
     }
+
+    public clearCart(): void {
+        this.cartService.clearCart().subscribe();
+    }
+
+    public checkout(): void {}
 }
