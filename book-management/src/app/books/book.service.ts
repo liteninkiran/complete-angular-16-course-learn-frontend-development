@@ -9,6 +9,8 @@ export class BookService {
     constructor() {}
 
     public addBook(book: Book): Observable<Book> {
-        return of(book);
+        const err = new Error('Error while adding a book');
+        return throwError(() => err);
+        // return of(book);
     }
 }
