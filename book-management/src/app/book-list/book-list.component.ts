@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Book } from '../models/book';
+import { Observable } from 'rxjs';
 import { AddBook, RemoveBook } from '../books/book.actions';
 
 @Component({
@@ -9,7 +10,11 @@ import { AddBook, RemoveBook } from '../books/book.actions';
     styleUrls: ['./book-list.component.css'],
 })
 export class BookListComponent {
-    constructor(private store: Store<{ books: Book[] }>) {}
+    public books$: Observable<Book[]>;
+
+    constructor(private store: Store<{ books: Book[] }>) {
+        this.books$ = store.pipe(select('books'));
+    }
 
     public addBook(id: string, title: string, author: string) {
         this.store.dispatch(AddBook({ id, title, author }));
