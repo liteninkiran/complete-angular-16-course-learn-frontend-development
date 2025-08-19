@@ -4,6 +4,7 @@ import { UserListComponent } from './user-list.component';
 import { UserService } from '../user.service';
 import { of } from 'rxjs';
 import { User } from '../user.model';
+import { By } from '@angular/platform-browser';
 
 const users: User[] = [
     { id: 1, name: 'John Doe' },
@@ -37,6 +38,14 @@ describe('UserListComponent', () => {
 
     it('should retrieve users from the UserService upon initialisation', () => {
         fixture.detectChanges();
+        expect(userServiceSpy).toHaveBeenCalled();
+    });
+
+    it('should retrieve users from the UserService when refresh button is clicked', () => {
+        fixture.detectChanges();
+        userServiceSpy.calls.reset();
+        const button = fixture.debugElement.query(By.css('button'));
+        button.triggerEventHandler('click', null);
         expect(userServiceSpy).toHaveBeenCalled();
     });
 });
