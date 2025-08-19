@@ -19,6 +19,7 @@ const snackBarMessage = 'Product added to cart';
 export class ProductListComponent implements OnInit {
     public products: Product[] = [];
     public filteredProducts: Product[] = [];
+    public sortOrder: string = '';
 
     constructor(
         private productService: ProductService,
@@ -47,5 +48,15 @@ export class ProductListComponent implements OnInit {
         this.filteredProducts = this.products.filter((product) =>
             product.name.toLowerCase().includes(searchTerm),
         );
+        this.sortProducts(this.sortOrder);
+    }
+
+    public sortProducts(sortValue: string) {
+        this.sortOrder = sortValue;
+        const sortPriceA = (a: Product, b: Product) => a.price - b.price;
+        const sortPriceD = (a: Product, b: Product) => b.price - a.price;
+        const sortFn =
+            this.sortOrder === 'priceLowHigh' ? sortPriceA : sortPriceD;
+        this.filteredProducts.sort(sortFn);
     }
 }
