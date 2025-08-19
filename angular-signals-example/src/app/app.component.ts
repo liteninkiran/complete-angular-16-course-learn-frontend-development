@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -9,18 +9,11 @@ import { Component, effect, signal } from '@angular/core';
 })
 export class AppComponent {
     public title = 'angular-signals-example';
-    public theme = signal('light');
-    public label = this.theme();
+    public price = 20;
+    public quantity = signal(10);
+    public totalPrice = computed(() => this.price * this.quantity());
 
-    constructor() {
-        effect(() => {
-            this.label = this.theme();
-        });
-    }
-
-    public toggleDarkMode(): void {
-        this.theme.update((current) =>
-            current === 'light' ? 'dark' : 'light',
-        );
+    public changeQuantity(event: Event) {
+        this.quantity.set((event.target as HTMLInputElement).valueAsNumber);
     }
 }
