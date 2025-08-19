@@ -18,6 +18,7 @@ const snackBarMessage = 'Product added to cart';
 })
 export class ProductListComponent implements OnInit {
     public products: Product[] = [];
+    public filteredProducts: Product[] = [];
 
     constructor(
         private productService: ProductService,
@@ -37,5 +38,13 @@ export class ProductListComponent implements OnInit {
                 this.snackbar.open(snackBarMessage, '', snackBarConfig);
             },
         });
+    }
+
+    public applyFilter(event: Event): void {
+        const target = event.target as HTMLInputElement;
+        const searchTerm = target.value.toLowerCase();
+        this.filteredProducts = this.products.filter((product) =>
+            product.name.toLowerCase().includes(searchTerm),
+        );
     }
 }
