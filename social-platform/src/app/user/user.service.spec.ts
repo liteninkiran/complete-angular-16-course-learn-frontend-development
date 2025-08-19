@@ -13,4 +13,10 @@ describe('UserService', () => {
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
+
+    it('should get users', () => {
+        service.getUsers().subscribe((users) => {
+            expect(users.length).toBeGreaterThan(0);
+        });
+    });
 });
