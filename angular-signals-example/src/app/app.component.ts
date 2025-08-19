@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,6 +8,11 @@ import { RouterOutlet } from '@angular/router';
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })
-export class AppComponent {
-    title = 'angular-signals-example';
+export class AppComponent implements OnInit {
+    public title = 'angular-signals-example';
+    public theme = signal('light');
+
+    public ngOnInit(): void {
+        document.body.className = this.theme();
+    }
 }
