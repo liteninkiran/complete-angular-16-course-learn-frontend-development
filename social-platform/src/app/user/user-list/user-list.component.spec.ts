@@ -34,4 +34,9 @@ describe('UserListComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('should retrieve users from the UserService upon initialisation', () => {
+        fixture.detectChanges();
+        expect(userServiceSpy).toHaveBeenCalled();
+    });
 });
