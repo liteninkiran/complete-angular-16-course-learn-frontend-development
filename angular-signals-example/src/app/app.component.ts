@@ -13,6 +13,11 @@ export class AppComponent implements OnInit {
     public theme = signal('light');
 
     public ngOnInit(): void {
+        // this.theme.set('dark');
+        this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
+        // this.theme.update((current) =>
+        //     current === 'light' ? 'dark' : 'light',
+        // );
         document.body.className = this.theme();
     }
 }
