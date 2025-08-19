@@ -1,23 +1,26 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, effect, signal } from '@angular/core';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet],
+    imports: [],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
     public title = 'angular-signals-example';
     public theme = signal('light');
+    public label = this.theme();
 
-    public ngOnInit(): void {
-        // this.theme.set('dark');
-        this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
-        // this.theme.update((current) =>
-        //     current === 'light' ? 'dark' : 'light',
-        // );
-        document.body.className = this.theme();
+    constructor() {
+        effect(() => {
+            this.label = this.theme();
+        });
+    }
+
+    public toggleDarkMode(): void {
+        this.theme.update((current) =>
+            current === 'light' ? 'dark' : 'light',
+        );
     }
 }
